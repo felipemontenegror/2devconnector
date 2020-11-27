@@ -1,17 +1,24 @@
 import { Layout, Col, Form, Input, Button  } from 'antd';
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import imgSignIn from '../../assets/img/socialmedia.jpg'
+import { signIn } from '../../store/Sign/action.sign'
 const { Content } = Layout;
 
-
 const SignIn = () => {
+  const dispatch = useDispatch()
+
+  const submitForm = () => {
+    dispatch(signIn())
+  }
+  
     return (
     <Layout className="layout">
     <Main>
         <SliceBg span={16}>
           <BgImg />
-            Felp_DevConnector
-        <span>Conectando Desenvolvedores</span>
+            FelpDev-Connector
+        <span>Social Media to Connect Developers</span>
         </SliceBg>
         <SliceForm span={8}>
             <FormLogin>
@@ -48,7 +55,7 @@ const SignIn = () => {
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" htmlType="submit">
+                <Button onClick={submitForm} type="primary" htmlType="submit">
                   Enviar
                 </Button>
               </Form.Item>
