@@ -8,6 +8,8 @@ import { RiProfileLine } from "react-icons/ri"
 import { CgProfile } from "react-icons/cg"
 import { GoChevronRight } from "react-icons/go";
 import { Breadcrumb } from 'antd'
+import { Link } from 'react-router-dom'
+import history from '../../config/history' //identificacao de qual pagina esta
 
 const { Header, Content, Footer } = Layout;
 
@@ -26,8 +28,8 @@ const MenuList = [
   
 
 const LayoutBase = ({children, breadcrumb, actions, title = ""}) => { // usa children pq quer usar o item de dentro do props
-
-
+  const getCurrent = MenuList.filter((m) => m.link === history.location.pathname)
+  console.log(getCurrent)
 
     return (
         <Layout className="layout">
@@ -35,13 +37,18 @@ const LayoutBase = ({children, breadcrumb, actions, title = ""}) => { // usa chi
         <Logo >
             <FaConnectdevelop /> FelpDev Connector{" "}
         </Logo>
-        <MenuStyled theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        {MenuList.map((m, i) => (
+        <MenuStyled theme="dark" mode="horizontal" defaultSelectedKeys={['1']} selectedKeys={[getCurrent[0].order]} >
+        
+        {MenuList.map((m) => (
         <Menu.Item key={m.order}>
+          <Link to={m.link}> 
             {m.icon} {m.title}
+          </Link>
             </Menu.Item>
         ))}
-        <Menu.Item key={10}> <FiPower /> Sair </Menu.Item>
+        <Menu.Item key={10}> 
+            <FiPower /> Sair 
+        </Menu.Item>
         </MenuStyled>
         </HeaderStyled>
         <ContentStyled>
