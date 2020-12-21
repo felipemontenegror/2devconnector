@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\segundo-projeto"
+		},
+		{
+			"path": "..\\..\\dupla-beer"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\beer-back-master-master"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"liveServer.settings.multiRootWorkspaceName": "Treino"
+	}
+}

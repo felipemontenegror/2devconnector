@@ -2,7 +2,7 @@ import React from 'react'
 import { Comment } from 'antd'
 import styled from 'styled-components'
 import AvatarNeutro from '../../assets/img/avatar.png'
-import Avatar from 'antd/lib/avatar/avatar'
+//import Avatar from 'antd/lib/avatar/avatar'
 
 
 

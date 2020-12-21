@@ -44,3 +44,5 @@ http.interceptors.response.use(  //interceptador/gerenciador de requisições ht
     return Promise.reject(error);
   }
 );
+
+export default http
