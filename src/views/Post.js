@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LayoutBase from '../components/layout'
 import PostItem from '../components/post/item'
 import Loading from '../components/loading/index'
@@ -9,21 +9,30 @@ import styled from 'styled-components'
 const BreadCrumb = ["Home", "Post"]
 
 
-
+const limitPerPage = 7
 
 const PostView = () => {
     const Actions = ""  //botao extrema direita
-    const dispatch = useDispatch()
+    const [page, setPage] = useState(1)
 
     //--Estado do redux--
+    const dispatch = useDispatch()
     const loading = useSelector((state) => state.post.loading)
     const postAll = useSelector((state) => state.post.all)
+    const total = useSelector((state) => state.post.total)
 
 
 
     useEffect(() => {
-    dispatch(getPostAll())
-    }, [dispatch])
+    dispatch(getPostAll(page, limitPerPage))
+    }, [dispatch, page])
+
+    const isFinalPage = () => {
+        const totalPage = Math.ceil(total / limitPerPage)
+        return page === totalPage
+    }
+
+
 
     const mountPosts = () => {
         if(postAll){
@@ -40,15 +49,24 @@ const PostView = () => {
     return;
     }
 
-    const Paginator = () => (
-        <>
+    const changePage = (page) => (page >= 1 ? setPage(page) : false)
+
+    const Paginator = () => {
+        return !loading && total > limitPerPage ? (
         <PaginatorStyled>
-        <Button type="primary">Anterior</Button>
-        <Button type="primary">Próximo</Button>
+        <Button onClick={() => changePage(page - 1)} 
+        disabled={page === 1} 
+        type="primary">Anterior</Button>
+
+        <Button disable={isFinalPage()} 
+        onClick={() => changePage(page + 1)} 
+        type="primary">Próximo</Button>
         </PaginatorStyled>
-        </>
-    )
-    return (
+        ) : (
+         ""
+        )
+    }
+     return (
         <LayoutBase breadcrumb={BreadCrumb} title="Postagens" actions={Actions} >    
         {loading ? <Loading /> : mountPosts()}
         {Paginator()}

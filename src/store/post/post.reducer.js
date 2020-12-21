@@ -2,7 +2,8 @@ import { GET_POSTS, POST_LOADING } from "./post.action"
 
 const INITIAL_STATE = {
   all: [],
-  loading: false
+  loading: false,
+  total: 0
 
 }
 
@@ -13,6 +14,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state
     case GET_POSTS:
       state.all = action.data
+      state.total = action.total
       state.loading = false
       return state
     default:
