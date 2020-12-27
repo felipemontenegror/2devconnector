@@ -50,7 +50,7 @@ const PanelStyled = styled(Panel)`
     background-color: #001529;
     color: #fff !important;
     margin: 10px auto;
-    border-radius: 10px; //borda arredondada, mas só está em amigos
+    //border-radius: 10px; //só arredondou o ''amigos'' e nao o ''sugestao de amizades'' tb
     
     
   }

@@ -1,22 +1,28 @@
-import { SIGN, SIGN_LOADING } from "./sign.action"
+import { getToken, getUser } from "../../config/auth";
+import { SIGN, SIGN_LOADING } from "./sign.action";
 
 const INITIAL_STATE = {
-  login: {
-    email: "contato@devconnector.com.br",
-  }
-}
+  loading: false,
+  token: getToken() || "",
+  user: getUser() || {},
+};
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SIGN_LOADING:
-      console.log(">> SIGN")
-      return state
+      state.loading = action.loading;
+      return state;
     case SIGN:
-      console.log(">> SIGN_LOADING")
-      return state
+      state.token = action.data.token;
+      state.user = action.data.user;
+      state.loading = false;
+
+      return state;
     default:
-      return state
+      return state;
   }
 };
 
-export default reducer
+export default reducer;
+
+

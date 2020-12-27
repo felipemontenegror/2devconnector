@@ -1,58 +1,68 @@
+import { useState } from "react";
 import { Layout, Col, Form, Input, Button  } from 'antd';
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import imgSignIn from '../../assets/img/socialmedia.jpg'
+
 import { signIn } from '../../store/Sign/sign.action'
+
 const { Content } = Layout;
-
 const SignIn = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [form, setForm] = useState({
+    password: "f123456m",
+    email: "felipe.montenegro@al.infnet.com.br",
+  });
 
+
+
+  const handleChange = (props) => {
+    const { value, name } = props.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  
   const submitForm = () => {
-    dispatch(signIn())
-  }
+    dispatch(signIn(form));
+  };
   
     return (
     <Layout className="layout">
     <Main>
         <SliceBg span={16}>
           <BgImg />
-            FelpDev-Connector
+            2Dev's-Connector
         <span>Social Media to Connect Developers</span>
         </SliceBg>
         <SliceForm span={8}>
             <FormLogin>
             <Form
-              name="basic"
               initialValues={{
-                remember: true,
+                ...form,
               }}
-              onFinish={() => console.log("")}
-              onFinishFailed={() => console.log("")}
-            >
-              <Form.Item
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your username!",
-                  },
-                ]}
               >
-                <Input placeholder="Entre com seu e-mail" />
+              <Form.Item name="email">
+                <Input
+                  name="email"
+                  value={form.email || ""}
+                  onChange={handleChange}
+                  placeholder="Entre com seu e-mail"
+                />
               </Form.Item>
 
+
               <Form.Item
+                value={form.password || ""}
                 name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your password!",
-                  },
-                ]}
+                onChange={handleChange}
+                placeholder="Entre com sua senha"
               >
                 <Input.Password placeholder="Entre com sua senha" />
               </Form.Item>
+
 
               <Form.Item>
                 <Button onClick={submitForm} type="primary" htmlType="submit">

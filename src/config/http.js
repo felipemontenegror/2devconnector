@@ -5,7 +5,7 @@ const api_local = "http//localhost:3001"
 // Instância do cliente HTTP para as requisições
 const http = axios.create({
   baseURL: process.env.REACT_APP_API || api_local, //variavel de ambiente || variave lde API local
-});
+})
 
 // Padronizar requisições com json
 http.defaults.headers["Content-type"] = "application/json" //configuracao de headers
@@ -23,14 +23,14 @@ http.interceptors.response.use(  //interceptador/gerenciador de requisições ht
     }
     switch (error.response.status) {
       case 401:
-        console.log("Token inválido...");
-        // removeToken();
-        // history.push("/login");
+        console.log("Token inválido...")
+        // removeToken()
+        // history.push("/login")
         break;
       case 404:
-        console.log("Pagina não encontrada...");
-        // removeToken();
-        // history.push("/login");
+        console.log("Pagina não encontrada...")
+        // removeToken()
+        // history.push("/login")
         break;
       default:
         console.log(
@@ -41,7 +41,7 @@ http.interceptors.response.use(  //interceptador/gerenciador de requisições ht
     }
 
     // axios.interceptors.response.eject(interceptors) // global
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
 );
 

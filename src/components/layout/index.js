@@ -35,7 +35,7 @@ const LayoutBase = ({children, breadcrumb, actions, title = ""}) => { // usa chi
         <Layout className="layout">
         <HeaderStyled>
         <Logo >
-            <FaConnectdevelop /> FelpDev Connector{" "}
+            <FaConnectdevelop /> 2Dev's Connector{" "}
         </Logo>
         <MenuStyled theme="dark" mode="horizontal" defaultSelectedKeys={['1']} selectedKeys={[getCurrent[0].order]} >
         
@@ -68,7 +68,7 @@ const LayoutBase = ({children, breadcrumb, actions, title = ""}) => { // usa chi
         </div>
         </ContentStyled>
         <Footer style={{ textAlign: 'center' }}>
-        Todos os Direitos Reservados Felp Dev Connector | 2020
+        Todos os Direitos Reservados 2Dev Connector | 2020
         </Footer>
     </Layout>
 

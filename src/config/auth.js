@@ -15,7 +15,7 @@ const getUser = () => {    //trazer a instajcia de usuario, dentro da mesma requ
   return false
 }
 
-const saveToken = (data) =>       
+const saveLocalStorage = (data) =>       
   localStorage.setItem(TOKEN_KEY, JSON.stringify(data))  //transofmra stringy em objeto
 
 const removeToken = () => localStorage.removeItem(TOKEN_KEY)
@@ -27,4 +27,4 @@ const isAuthenticated = () => {
   return getToken() !== false
 }
 
-export { isAuthenticated, getToken, getUser, saveToken, removeToken }
+export { isAuthenticated, getToken, getUser, saveLocalStorage, removeToken }
