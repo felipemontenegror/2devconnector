@@ -11,6 +11,7 @@ import Profile from './views/Profile'
 import SignIn from './views/Sign/Signin'
 import { isAuthenticated } from './config/auth'
 
+
 const AdminRoute = ({ ...rest }) => {  //autenticacao de rota para api
     if (!isAuthenticated()) {
       return <Redirect to="/signin" />;

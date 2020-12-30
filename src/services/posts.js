@@ -15,3 +15,4 @@ const createPostService = (data) => {
 };
 
 export { getPostsService, createPostService };
+
