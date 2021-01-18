@@ -1,4 +1,4 @@
-const TOKEN_KEY = "dev_connector"
+const TOKEN_KEY = "2devs_connector"
 
 const getToken = () => {      //obter o token
   const data = JSON.parse(localStorage.getItem(TOKEN_KEY))

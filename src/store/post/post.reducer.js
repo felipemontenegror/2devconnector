@@ -1,4 +1,4 @@
-import { GET_POSTS, POST_LOADING, CREATE_POST } from "./post.action"
+import { GET_POSTS, POST_LOADING, CREATE_POSTS } from "./post.action"
 
 const INITIAL_STATE = {
   all: [],
@@ -17,12 +17,12 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.total = action.total
       state.loading = false
       return state
-      case CREATE_POST:
+      case CREATE_POSTS:
         state.loading = false
         return state
     default:
       return state
   }
-};
+}
 
 export default reducer

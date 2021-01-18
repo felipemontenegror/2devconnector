@@ -10,8 +10,15 @@ import { GoChevronRight } from "react-icons/go";
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 import history from '../../config/history' //identificacao de qual pagina esta
+import { removeToken } from '../../../src/config/auth'
 
 const { Header, Content, Footer } = Layout;
+
+const logout = () => {
+  removeToken();
+  history.push("/");
+}
+
 
 //array de menu objeto 
 const MenuList = [
@@ -46,7 +53,7 @@ const LayoutBase = ({children, breadcrumb, actions, title = ""}) => { // usa chi
           </Link>
             </Menu.Item>
         ))}
-        <Menu.Item key={10}> 
+        <Menu.Item key={10} onClick={logout}> 
             <FiPower /> Sair 
         </Menu.Item>
         </MenuStyled>
@@ -68,7 +75,7 @@ const LayoutBase = ({children, breadcrumb, actions, title = ""}) => { // usa chi
         </div>
         </ContentStyled>
         <Footer style={{ textAlign: 'center' }}>
-        Todos os Direitos Reservados 2Dev Connector | 2020
+        Todos os Direitos Reservados 2Dev Connector | 2021
         </Footer>
     </Layout>
 

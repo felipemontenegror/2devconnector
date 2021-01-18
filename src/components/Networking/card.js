@@ -1,7 +1,5 @@
 import { Tooltip, Card } from "antd";
-
 import { toastr } from "react-redux-toastr";
-
 import {
   LikeOutlined,
   UserAddOutlined,
@@ -46,6 +44,7 @@ const CardStyled = styled(Card)`
   border: thin solid #e7e7e7;
   border-radius: 5px;
   overflow: hidden;
+
   
 `;
 

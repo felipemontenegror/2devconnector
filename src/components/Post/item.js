@@ -21,6 +21,7 @@ const PostItem = ({
         <img src={avatar} alt={title}/>}
       content={
         <React.Fragment>
+          <h6>{author}</h6>
           <h4>{title}</h4>
           <p>{description}</p>
         </React.Fragment>

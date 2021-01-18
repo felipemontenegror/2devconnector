@@ -1,10 +1,14 @@
 // formulario de postagem
 import { useState } from "react"
 import { Form, Button, Input } from "antd"
-const { TextArea } = Input
+import { createPost } from "../../store/post/post.action";
+import { useDispatch } from "react-redux";
 
+const { TextArea } = Input;
 const FormPost = (props) => {
-  const [form, setform] = useState({})
+  const dispatch = useDispatch();
+  const [form, setform] = useState({});
+
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -13,6 +17,13 @@ const FormPost = (props) => {
       [name]: value,
     })
   }
+
+  const submitPost = (e) => {
+    e.preventDefault();
+    dispatch(createPost(form));
+    props.closeModal();
+  };
+
 
   return (
     <Form  //abriu um form 
@@ -48,8 +59,7 @@ const FormPost = (props) => {
         <Button
           type="primary"
           htmlType="submit"
-          onClick={(event) => props.submit(event, form)}
-        >
+          onClick={submitPost}>
           Publicar
         </Button>
       </Form.Item>
@@ -58,3 +68,4 @@ const FormPost = (props) => {
 };
 
 export default FormPost
+

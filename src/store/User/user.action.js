@@ -13,6 +13,20 @@ export const getProfile = (props) => {
     dispatch({ type: "SET_PROFILE", profile });
   };
 };
+
+export const updateProfile = (props) => {
+  return async (dispatch, getState) => {
+    const { auth } = getState();
+
+    const { profile: user } = await getAllUsers();
+
+    const profile = user.find((it) => it._id === auth.user.id);
+
+    dispatch({ type: "UPDATE_PROFILE", profile });
+  };
+};
+
+
 export const AddEducation = (props) => {
   return async (dispatch) => {
     const { data: education } = await addEducationService(props);
