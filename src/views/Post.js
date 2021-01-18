@@ -6,85 +6,54 @@ import { useDispatch, useSelector } from 'react-redux'
 import {getPostAll, createPost } from '../store/post/post.action'
 import { Button, Modal } from 'antd'
 //import styled from 'styled-components'
-import FormPost from '../components/post/form'
+import Form from '../components/post/form'
 
 const BreadCrumb = ["Home", "Post"]
 
 
-//const limitPerPage = 7
-
 const PostView = () => {
-  const Actions = <Button onClick={() => setModal(true)}>Novo</Button>;
-  const [modal, setModal] = useState(false);
-  const [update, setUpdate] = useState(false);
+  const [modal, showModal] = useState(false);
+
   // Estado do redux -----------------------------------
   const dispatch = useDispatch();
+
   const loading = useSelector((state) => state.post.loading);
   const postAll = useSelector((state) => state.post.all);
-  //const total = useSelector((state) => state.post.total);
+
   // -----------------------------------
-  
   useEffect(() => {
     dispatch(getPostAll());
-    if (update) {
-      setUpdate(false);
-    }
-  }, [dispatch, update]);
+  }, [dispatch])
 
-  // const isFinalPage = () => {
-  //   const totalPage = Math.ceil(total / limitPerPage);
-  //   return page === totalPage;
-  //   // return total % limitPerPage === 0;
-  // }
+  const Actions = <Button onClick={() => showModal(true)}> Novo </Button>;
 
+  const handleCancel = () => {
+    showModal(false);
+  }
+
+  const handleSubmit = (form, e) => {
+    e.preventDefault();
+    dispatch(createPost(form));
+    handleCancel();
+  };
   const mountPosts = () => {
     if (postAll) {
       return postAll.map((post, i) => (
+        
         <PostItem
           key={i}
-          author={"Aqui deve constar o AUTOR"}
+          author={post.author}//"Algum autor"}//{post.name}
           title={post.title}
-          description={"Aqui deve constar o DESCRIÇÃO"}
+          description={post.description}//{post.content}
           created_at={post.created_at}
         />
-      ));
+        
+      ))
     }
+    
     return;
-  };
-
-  // const changePage = (page) => (page >= 1 ? setPage(page) : false);
-  // const Paginator = () => {
-  //   return !loading && total > limitPerPage ? (
-  //     <PaginatorStyled>
-  //       <Button
- //          onClick={() => changePage(page - 1)}
- //          disabled={page === 1}
- //          type="primary"
- //        >
- //          Anterior
-//         </Button>
-//         <Button
-//           disabled={isFinalPage()}
-//           onClick={() => changePage(page + 1)}
-//           type="primary"
-//         >
-//           Próximo
-//         </Button>
-//        </PaginatorStyled>
-//     ) : (
-//       ""
-//     );
- //  };
-
-  const handleCancel = () => setModal(false);
-
-  const submitPost = (event, data) => {
-    event.preventDefault();
-    dispatch(createPost(data));
-    handleCancel();
-    setUpdate(true);
-  };
-
+  }
+  
   const ModalForm = () => (
     <Modal
       title="Nova Postagem"
@@ -92,27 +61,16 @@ const PostView = () => {
       footer={false}
       onCancel={handleCancel}
     >
-      <FormPost submit={submitPost} />
+      <Form submit={handleSubmit} closeModal={handleCancel} />
     </Modal>
-  );
+  )
 
   return (
     <LayoutBase breadcrumb={BreadCrumb} title="Postagens" actions={Actions}>
       <ModalForm />
       {loading ? <Loading /> : mountPosts()}
-      {/* {Paginator()} */}
     </LayoutBase>
-  );
-};
+  )
+}
 
 export default PostView;
-
-//const PaginatorStyled = styled.div`
-//  display: flex
-//  justify-content: center
-//  margin-top: 20px
-//  padding: 10px
-//  button {
-//    margin: 5px
-//  }
-//`
