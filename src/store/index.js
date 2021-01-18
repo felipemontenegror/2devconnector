@@ -6,7 +6,7 @@ import multi from "redux-multi";
 import { reducer as toastrReducer } from "react-redux-toastr";
 
 import SignReducer from "./Sign/sign.reducer";
-import PostReducer from "./post/post.reducer";
+import PostReducer from "./Post/post.reducer";
 import UserReducer from "./User/user.reducer";
 
 // modularizações dos reduces

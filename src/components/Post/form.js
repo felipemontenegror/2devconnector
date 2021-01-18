@@ -1,7 +1,7 @@
 // formulario de postagem
 import { useState } from "react"
 import { Form, Button, Input } from "antd"
-import { createPost } from "../../store/post/post.action";
+import { createPost } from "../../store/Post/post.action";
 import { useDispatch } from "react-redux";
 
 const { TextArea } = Input;
