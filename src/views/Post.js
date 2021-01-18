@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import LayoutBase from '../components/layout'
-import PostItem from '../components/post/item'
+import PostItem from '../components/Post/item'
 import Loading from '../components/loading/index'
 import { useDispatch, useSelector } from 'react-redux'
 import {getPostAll, createPost } from '../store/Post/post.action'
 import { Button, Modal } from 'antd'
 //import styled from 'styled-components'
-import Form from '../components/post/form'
+import Form from '../components/Post/form'
 
 const BreadCrumb = ["Home", "Post"]
 

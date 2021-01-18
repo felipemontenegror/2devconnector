@@ -5,10 +5,10 @@ import { ImProfile } from "react-icons/im";
 import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 
-import CollapseOptions from "../components/panel/collapse_options";
-import FormEducation from "../components/panel/form.education";
+import CollapseOptions from "../components/Panel/collapse_options";
+import FormEducation from "../components/Panel/form.education";
 //import FormExperience from "../components/panel/form.experience";
-import FormProfile from "../components/panel/form.profile";
+import FormProfile from "../components/Panel/form.profile";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { getProfile } from '../store/User/user.action';
@@ -41,7 +41,7 @@ const PanelAdmin = () => {
         return <CollapseOptions />
     }
   };
-  
+
   const profile = useSelector((state) => state.auth.profile)
   console.log("profile", profile)
 
