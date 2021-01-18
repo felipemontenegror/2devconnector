@@ -7,19 +7,27 @@ import { MdDashboard } from "react-icons/md";
 
 import CollapseOptions from "../components/panel/collapse_options";
 import FormEducation from "../components/panel/form.education";
-import FormExperience from "../components/panel/form.experience";
+//import FormExperience from "../components/panel/form.experience";
 import FormProfile from "../components/panel/form.profile";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector} from 'react-redux';
+import { getProfile } from '../store/User/user.action';
 
 const BreadCrumb = ["Home", "Painel"];
 
 const PanelAdmin = () => {
   const Actions = "";
+  const dispatch = useDispatch()
   const [viewPanel, setViewPanel] = useState(0);
 
   const changeViewPanel = (view) => {
     setViewPanel(view);
   };
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
 
   const ViewPanel = () => {
     switch (viewPanel) {
@@ -29,12 +37,13 @@ const PanelAdmin = () => {
         return <FormProfile />
       case 2:
         return <FormEducation />
-      case 3:
-         return <FormExperience />
       default:
         return <CollapseOptions />
     }
   };
+  
+  const profile = useSelector((state) => state.auth.profile)
+  console.log("profile", profile)
 
   return (
     <LayoutBase breadcrumb={BreadCrumb} title="Minha Rede" actions={Actions}>
