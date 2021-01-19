@@ -49,7 +49,7 @@ const PostView = () => {
         />
         
       ))
-    }
+    };
     
     return;
   }
@@ -71,6 +71,6 @@ const PostView = () => {
       {loading ? <Loading /> : mountPosts()}
     </LayoutBase>
   )
-}
+};
 
 export default PostView;
