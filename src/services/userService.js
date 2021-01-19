@@ -20,4 +20,4 @@ const removeEducationService = (education) => http.delete(`/education`,
   }
 )
 
-export { getAllUsers, updateUser, addEducationService, removeEducationService };
+export { getAllUsers, updateUser, addEducationService, removeEducationService }

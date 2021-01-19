@@ -1,114 +1,112 @@
-import { Button, Form, Input, Row, Col, Select } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Form, Button, Input, Row, Col, Select } from "antd";
+//import { createPost } from "../../store/Post/post.action";
+import { updateProfile } from "../../store/User/user.action"
 import { useDispatch, useSelector } from "react-redux";
-
 import styled from "styled-components";
-import { getProfile } from "../../store/User/user.action";
+
 const { Option } = Select;
+const FormPost = (props) => {
+    const dispatch = useDispatch();
+    const profile = useSelector((state) => state.user.profile);
+    const [form, setform] = useState({});
 
-const FormEducation = () => {
-    const dispatch = useDispatch()
-    const [form, setForm] = useState({
-    });
-    const profile = useSelector(state => state.user.profile)
-
-
-    useEffect(() => {
-        dispatch(getProfile())
-    }, [dispatch])
-
-    const handleChange = (props) => {
-        const { value, name } = props.target;
-        setForm({
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setform({
             ...form,
             [name]: value,
         });
     };
+
     const handleSelect = (value) => {
-        setForm({
+        setform({
             ...form,
             gender: value,
         });
-    }
-
-    const submitForm = () => {
-        console.log(form)
     };
 
+    const submitPost = (e) => {
+        e.preventDefault();
+        dispatch(updateProfile(form));
+        //form.closeModal();
+    }
+
     return (
-        <Row>
-            <ColStyled span={12} >
-                <Form
-                    initialValues={{
-                        ...profile
-                    }}
-                >
-                    <Form.Item name="name">
-                        <Input
-                            name="name"
-                            value={form.name || ""}
-                            onChange={handleChange}
-                            placeholder="Entre com seu Nome"
-                        />
-                    </Form.Item>
-                    <Form.Item name="email">
-                        <Input
-                            name="email"
-                            value={form.name || ""}
-                            onChange={handleChange}
-                            placeholder="Entre com seu e-mail"
-                        />
-                    </Form.Item>
-                    <Form.Item name="username">
-                        <Input
-                            name="username"
-                            value={form.username || ""}
-                            onChange={handleChange}
-                            placeholder="Entre com seu Nick name"
-                        />
-                    </Form.Item>
+        <>
+            {!Object.keys(profile).length > 0 ? (
+                ""
+            ) : (
+                    <ContainerForm>
+                        <Col span={12}>
+                            <Form
+                                name="basic"
+                                initialValues={profile}
+                                onFinish={() => { }}
+                                onFinishFailed={() => { }}
+                            >
+                                <Form.Item name="name">
+                                    <Input
+                                        placeholder="Insira um Nome"
+                                        name="name"
+                                        onChange={handleChange}
+                                    />
+                                </Form.Item>
+                                <Form.Item name="username">
+                                    <Input
+                                        placeholder="Insira um Username"
+                                        name="username"
+                                        onChange={handleChange}
+                                    />
+                                </Form.Item>
+                                <Form.Item name="email">
+                                    <Input
+                                        placeholder="Insira um Email"
+                                        name="email"
+                                        onChange={handleChange}
+                                    />
+                                </Form.Item>
+                                <Form.Item name="gender">
+                                    <Select
+                                        style={{ width: 120 }}
+                                        name="gender"
+                                        onChange={handleSelect}
+                                        placeholder="Sexo"
+                                    >
+                                        <Option value="masculino">Masculino</Option>
+                                        <Option value="feminino">Feminino</Option>
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item name="place">
+                                    <Input
+                                        placeholder="Insira um Local"
+                                        name="place"
+                                        onChange={handleChange}
+                                    />
+                                </Form.Item>
+                                <Form.Item
+                                    value={form.password || ""}
+                                    name="password"
+                                    onChange={handleChange}
+                                    placeholder="Entre com sua senha"
+                                >
+                                    <Input.Password placeholder="Entre com sua senha" />
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit" onClick={submitPost}>
+                                        Publicar
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </Col>
+                    </ContainerForm>
+                )}
+        </>
+    );
+};
 
-                    <Form.Item name="place">
-                        <Input
-                            name="place"
-                            value={form.place || ""}
-                            onChange={handleChange}
-                            placeholder="Entre com seu Local"
-                        />
-                    </Form.Item>
-                    <Form.Item name="gender" >
-                        <Select style={{ width: 120 }} name="gender" onChange={handleSelect} placeholder="Sexo">
-                            <Option value="masculino">Masculino</Option>
-                            <Option value="feminino">Feminino</Option>
-                            <Option value="NaN">NaN</Option>
-                        </Select>
+export default FormPost;
 
-                    </Form.Item>
-                    <Form.Item
-                        value={form.password || ""}
-                        name="password"
-                        onChange={handleChange}
-                        placeholder="Entre com sua senha"
-                    >
-                        <Input.Password placeholder="Entre com sua senha" />
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button onClick={submitForm} type="primary" htmlType="submit">
-                            Atualizar
-          </Button>
-                    </Form.Item>
-                </Form>
-            </ColStyled>
-        </Row>
-    )
-}
-
-
-export default FormEducation
-
-
-const ColStyled = styled(Col)`
-    margin: 20px;
-    min-width: 500px !important;
-`
+const ContainerForm = styled(Row)`
+    margin-top: 20px;
+    `

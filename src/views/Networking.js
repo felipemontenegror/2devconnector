@@ -1,6 +1,6 @@
 import LayoutBase from '../components/layout'
 import styled from "styled-components"
-import Card from "../components/Networking/card";
+import Card from "../components/networking/card";
 import { Collapse } from "antd"
 
 const { Panel } = Collapse
@@ -50,7 +50,7 @@ const PanelStyled = styled(Panel)`
     background-color: #001529;
     color: #fff !important;
     margin: 10px auto;
-    //border-radius: 10px; 
+    //border-radius: 10px; //só arredondou o ''amigos'' e nao o ''sugestao de amizades'' tb
     
     
   }

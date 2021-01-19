@@ -1,15 +1,13 @@
-import { Button } from "antd";
+import { Button } from 'antd';
 import LayoutBase from "../components/layout";
 import styled from "styled-components";
-import { ImProfile } from "react-icons/im";
-import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
+import { ImProfile } from 'react-icons/im';
+import { FaUserAlt, FaGraduationCap, FaHome } from 'react-icons/fa';
 
-import CollapseOptions from "../components/Panel/collapse_options";
-import FormEducation from "../components/Panel/form.education";
-//import FormExperience from "../components/panel/form.experience";
-import FormProfile from "../components/Panel/form.profile";
-import { useState, useEffect } from "react";
+import CollapseOptions from '../components/panel/collapse_options'
+import FormProfile from '../components/panel/form.profile'
+import FormEducation from '../components/panel/form.education'
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { getProfile } from '../store/User/user.action';
 
@@ -28,7 +26,6 @@ const PanelAdmin = () => {
     dispatch(getProfile());
   }, [dispatch]);
 
-
   const ViewPanel = () => {
     switch (viewPanel) {
       case 0:
@@ -41,17 +38,15 @@ const PanelAdmin = () => {
         return <CollapseOptions />
     }
   };
-
   const profile = useSelector((state) => state.auth.profile)
   console.log("profile", profile)
-
   return (
     <LayoutBase breadcrumb={BreadCrumb} title="Minha Rede" actions={Actions}>
       <Info>
         <FaUserAlt /> Bem vindo, <strong> Felipe Montenegro</strong>
         <br />
         <Button size="medium" onClick={() => changeViewPanel(0)}>
-          <MdDashboard /> DashBoard
+          <FaHome />  DashBoard
         </Button>
         <Button size="medium" onClick={() => changeViewPanel(1)}>
           <ImProfile /> Editar Perfil
@@ -59,9 +54,6 @@ const PanelAdmin = () => {
         <Button size="medium" onClick={() => changeViewPanel(2)}>
           <FaGraduationCap /> Adicionar Educação
         </Button>
-        {/* <Button size="medium" onClick={() => changeViewPanel(3)}>
-          <FaBlackTie /> Adicionar Experiência
-        </Button> */}
       </Info>
       {ViewPanel()}
     </LayoutBase>

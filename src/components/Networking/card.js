@@ -1,53 +1,65 @@
-import { Tooltip, Card } from "antd";
-import { toastr } from "react-redux-toastr";
-import {
-  LikeOutlined,
-  UserAddOutlined,
-  HeartOutlined,
-} from "@ant-design/icons";
-import styled from "styled-components";
-import DevAvatar from "../../assets/img/avatar.png";
-toastr.info("Cadastro de postagem feito com sucesso.");
+import React from 'react';
+import styled from 'styled-components';
+import { Card } from 'antd';
+import DevAvatar from "../../assets/img/avatar.png"
+import { LikeOutlined, UserAddOutlined, HeartOutlined } from '@ant-design/icons';
+import { Tooltip, notification } from 'antd';
 
-//const key = "updatable";
+const key = 'updatable';
 
-const CardNetworking = () => {
+
+const CardProfile = () => {
+
+
   const openNotification = () => {
-    toastr.info("Cadastro de postagem feito com sucesso.");
+    notification.open({
+      key,
+      message: 'Notification Title',
+      description:
+        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
   };
-
   return (
     <CardStyled
-      cover={<img alt="example" src={DevAvatar} />}
+      style={{ width: 300 }}
+      cover={
+        <img
+          alt="example"
+          src={DevAvatar}
+        />
+      }
       actions={[
-        <Tooltip placement="top" title="Curtir">
+        <Tooltip placement="top" title="Curtir" arrowPointAtCenter>
           <LikeOutlined onClick={openNotification} />
         </Tooltip>,
-        <Tooltip placement="top" title="Adicionar">
+        <Tooltip placement="top" title="Adicionar" arrowPointAtCenter>
           <UserAddOutlined onClick={openNotification} />
         </Tooltip>,
-        <Tooltip placement="top" title="Favoritar">
+        <Tooltip placement="top" title="Favoritar" arrowPointAtCenter>
           <HeartOutlined onClick={openNotification} />
         </Tooltip>,
       ]}
     >
-      <Title size="18">Felipe Montenegro</Title>
-      <Title size="12">Desenvolvedor Full Stack</Title>
+      <Title size="18">Kabir Moareb</Title>
+      <Title size="12">Desenvolvedor</Title>
     </CardStyled>
   );
-};
+}
 
-export default CardNetworking;
+export default CardProfile
+
+
 
 const CardStyled = styled(Card)`
-  width: 220px;
   border: thin solid #e7e7e7;
   border-radius: 5px;
   overflow: hidden;
+  `
 
-  
-`;
 
 const Title = styled.div`
-  font-size: ${(props) => props.size + "px" || "12px"};
-`;
+font-size: ${props => props.size + 'px' || '12px'};
+`

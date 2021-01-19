@@ -1,17 +1,14 @@
 import { Collapse } from "antd";
 import styled from "styled-components";
 
-//import TableEducation from "./table.education";
+import TableEducation from "./table.education";
 const { Panel } = Collapse;
 
 const CollapseOptions = () => (
   <Collapse defaultActiveKey={["1"]} ghost>
     <PanelStyled header="Educação" key="1">
-      {/*<TableEducation />*/}
+      <TableEducation />
     </PanelStyled>
-    {/* <PanelStyled header="Experiência Profissional" key="2">
-      <TableExperience />
-    </PanelStyled> */}
   </Collapse>
 );
 

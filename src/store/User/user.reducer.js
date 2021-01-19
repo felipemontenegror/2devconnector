@@ -1,13 +1,13 @@
 const INITIAL_STATE = {
     profile: {},
-  }
+  };
   
   const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case "SET_PROFILE":
         state.profile = action.profile;
         return state
-        case "UPDATE_PROFILE":
+      case "UPDATE_PROFILE":
           state.profile = {
             ...state.profile,
             user: state.profile.user.filter(item => item._id !== action.id)
@@ -18,9 +18,9 @@ const INITIAL_STATE = {
           ...state.profile,
           education: state.profile.education.filter(item => item._id !== action.id)
         }
-        return state
+        return state;
       default:
-        return state
+        return state;
     }
   };
   

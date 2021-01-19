@@ -6,9 +6,9 @@ export const getProfile = (props) => {
   return async (dispatch, getState) => {
     const { auth } = getState();
 
-    const { data: users } = await getAllUsers();
+    const { data: user } = await getAllUsers();
 
-    const profile = users.find((it) => it._id === auth.user.id);
+    const profile = user.find((it) => it._id === auth.user.id);
 
     dispatch({ type: "SET_PROFILE", profile });
   };
@@ -26,7 +26,6 @@ export const updateProfile = (props) => {
   };
 };
 
-
 export const AddEducation = (props) => {
   return async (dispatch) => {
     const { data: education } = await addEducationService(props);
@@ -35,6 +34,7 @@ export const AddEducation = (props) => {
     }
   };
 };
+
 export const RemoveEducation = (education) => {
   return async (dispatch) => {
 

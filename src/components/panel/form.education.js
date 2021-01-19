@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { AddEducation } from "../../store/User/user.action";
 import locale from 'antd/es/date-picker/locale/pt_BR';
-// import 'moment/locale/pt-br';
 const { TextArea } = Input;
-
-
 
 const { Option } = Select;
 
