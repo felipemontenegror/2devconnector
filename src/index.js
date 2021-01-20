@@ -15,5 +15,5 @@ ReactDOM.render(
     <ToastrComponent />
   </Provider>,
   document.getElementById('root')
-);
+)
 
